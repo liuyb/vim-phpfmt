@@ -1,6 +1,6 @@
 "=============================================================================
 " File: phpfmt.vim
-" Author: Carlos Cirello
+" Author: liuyb
 " Inspired by: vim-php-cs-fixer
 
 if exists("g:vim_phpfmt") || &cp
@@ -43,14 +43,18 @@ fun! PhpFmtFix(path)
         let command = command.' --enable_auto_align'
     endif
 
-    if exists('g:visibility_order')
+    if exists('g:phpfmt_visibility_order')
         let command = command.' --visibility_order'
+    endif
+
+    if exists('g:phpfmt_psr')
+        let command = command.' --psr'
     endif
 
     if exists('g:smart_linebreak_after_curly')
         let command = command.=' --smart_linebreak_after_curly'
     endif
-    
+
     let command = command.' '.a:path
 
     let s:lint = system(g:phpfmt_php_path.' -l '.a:path)
