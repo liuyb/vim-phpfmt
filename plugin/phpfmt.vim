@@ -50,6 +50,12 @@ fun! PhpFmtFix(path)
     if exists('g:phpfmt_psr')
         let command = command.' --psr'
     endif
+    if exists('g:phpfmt_psr1')
+        let command = command.' --psr1'
+    endif
+    if exists('g:phpfmt_psr2')
+        let command = command.' --psr2'
+    endif
 
     if exists('g:smart_linebreak_after_curly')
         let command = command.=' --smart_linebreak_after_curly'
